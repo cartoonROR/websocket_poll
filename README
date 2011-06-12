@@ -7,18 +7,13 @@ Getting Started
     	gem install socky-server
 2.Install the socky-client and socky-client-rails gems
 	gem install socky-client
-	
 	bundle install
 3.Create Database
 	rake db:create 
 	rake db:migrate
-4.Generate Rails config file:
-    	rake socky:create_config
-5.Generate Socky config file:
-    	socky -g config/socky.yml
-6.Run Socky server
+4.Run Socky server
     	socky -c config/socky.yml
-7.Run Rails app
+5.Run Rails app
     	rails s
-8.Point to http://localhost:3000
+6.Point to http://localhost:3000
 
