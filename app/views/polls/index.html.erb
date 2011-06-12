@@ -1,0 +1,34 @@
+<div class="box-status">
+  <%= link_to "Poll", polls_path %>
+  <div style="float:right;">
+  <% if current_user %>
+    <%= current_user.email %>
+    <%= link_to "Sign out", logout_path %>
+  <% else %>
+    <%= link_to "Sign in", login_path %>
+  <% end %>
+    </div>
+  <div style="clear:both;"></div>
+</div>
+<div class="box-table-poll">
+<%= link_to "New Poll", new_poll_path ,:id => 'poll-new',:class => 'div-submit'%>
+  <% unless @polls.empty? %>
+    <table class="table-poll">
+      <th>Name</th>
+      <th>Detail</th>
+      <th class="table-function">Function</th>
+      <% @polls.each do |poll| %>
+        <tr>
+        <td><%= poll.name %></td>
+        <td><%= poll.detail %></td>
+        <td>
+            <%= link_to "", edit_poll_path(poll.id),:class => 'edit-icon',:title => "Edit" %>
+            <%= link_to "", show_poll_path(poll.id) ,:class => 'add-item-icon',:title => "Add Item"%>
+            <%= link_to '', poll_destroy_path(poll.id),:class => 'del-item-icon',:title => "Destroy"%>
+            <%= link_to "", view_poll_path(poll.key) ,:class => 'vote-item-icon',:title => "Vote"%>
+        </td>
+      </tr>
+  <% end %>
+</table>
+<% end%>
+</div>

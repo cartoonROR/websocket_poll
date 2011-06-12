@@ -1,0 +1,57 @@
+<% content_for :head do %>
+  <%= socky  %>
+<% end %>
+<div class="box-status">
+  <% if current_user %>
+  <%= link_to "Poll", polls_path %> <%= image_tag("icon6.png") %> Vote
+  <div style="float:right;">
+    <%= current_user.email %>
+    <%= link_to "Sign out", logout_path %>
+    </div>
+  <% else %>
+      <div style="float:right;">
+    <%= link_to "Sign in", login_path %>
+      </div>
+  <% end %>
+  <div style="clear:both;"></div>
+</div>
+
+<div class="box-table-poll" id='box-show-vote'>
+  <div id="title-name" class='poll-title' data-key="<%= @poll.key %>"><%= @poll.name %></div>
+  <div><%= @poll.detail %></div>
+  <% if cookies[:dev_appserver_login] == @poll.key %>
+    <div id='show-poll' style='margin:20px auto; width:300px; height:300px;'></div>
+    <script>
+      $(document).ready(function(){
+        $.jqplot('show-poll', [<%= raw(@polls) %>], {
+          seriesDefaults:{
+            renderer:$.jqplot.PieRenderer,
+            rendererOptions: {
+              showDataLabels: true,
+              dataLabelThreshold: 1,
+              dataLabelFormatString: '%.1f%%'
+            }
+          },
+          legend: {
+            show: true,
+            placement: 'outside'
+          }
+        });
+      });
+    </script>
+  <% else %>
+  <div id="show-poll-list">
+    <div>
+      <%  @poll.sub_polls.each do |subpoll| %>
+        <div>
+          <%= radio_button_tag @poll.name, subpoll.name,false,:class => "selete-poll" %><%= subpoll.name %>
+        </div>
+      <% end %>
+    </div>
+    <div style="text-align:center;">
+      <span id="submit-poll" class="div-submit">Vote</span>
+    </div>
+  </div>
+      <div id='show-poll' style='margin:20px auto; width:300px; height:300px;display:none;'></div>
+  <% end %>
+</div>

@@ -1,0 +1,24 @@
+
+<div class="box-status">
+  <%= link_to "Poll", polls_path %> <%= image_tag("icon6.png") %> Add Item
+  <div style="float:right;">
+  <% if current_user %>
+    <%= current_user.email %>
+    <%= link_to "Sign out", logout_path %>
+  <% else %>
+    <%= link_to "Sign in", login_path %>
+  <% end %>
+    </div>
+  <div style="clear:both;"></div>
+</div>
+<div class="box-table-poll">
+<div id="poll-title" class='poll-title' data-poll-id="<%= @poll.id %>"><%= @poll.name %></div>
+<div class="sub-show-detail"><%= @poll.detail %></div>
+<div class="sub-item">Item</div>
+<div id="poll-list-item">
+  <% @poll.sub_polls.each do |subpoll| %>
+    <div class='box-sub-item' data-sub-poll-id='<%= subpoll.id %>'><span><input type="text" class="name-item" value="<%= subpoll.name %>"></input></span><span class="save-item div-submit">Save</span><span class="delete-item div-submit">Delete</span></div>
+  <% end %>
+</div>
+<span id="add-item" class="div-submit">New item</span>
+</div>

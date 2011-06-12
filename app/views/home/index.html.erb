@@ -1,0 +1,8 @@
+<div>
+  <% if current_user %>
+    <%= "Signed in as #{current_user.login}. Not you?"%>
+    <%= link_to "Sign out", logout_path %>
+  <% else %>
+    <%= link_to "Sign in", new_user_session_path %>
+  <% end %>
+</div>

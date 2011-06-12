@@ -1,0 +1,32 @@
+<div class="box-status">
+  <% if current_user %>
+  <%= link_to "Poll", polls_path %> <%= image_tag("icon6.png") %> New Poll
+  <div style="float:right;">
+    <%= current_user.email %>
+    <%= link_to "Sign out", logout_path %>
+  <% else %>
+    <%= link_to "Sign in", login_path %>
+  <% end %>
+    </div>
+  <div style="clear:both;"></div>
+</div>
+<div class="box-table-poll">
+<%= form_for @poll, :url => {:action => "create"} do |f| %>
+  <%= f.error_messages %>
+  <div>
+    <%= f.label :name %>
+  </div>
+  <div>
+    <%= f.text_field :name ,:class => "txt-name-item"%>
+  </div>
+  <div>
+    <%= f.label :detail %>
+  </div>
+  <div>
+    <%= f.text_area :detail %>
+  </div>
+  <div>
+    <%= f.submit "Commit",:class => 'button-submit' %>
+  </div>
+<% end %>
+</div>

@@ -1,0 +1,29 @@
+<div class="box-login">
+  <%= form_for @user_session, :url => {:action => "create"} do |f| %>
+    <%= f.error_messages %>
+    <div class="title-login">
+      <%= f.label :login,"Username" %>
+    </div>
+    <div class="input-txt-login">
+      <%= f.text_field :login %>
+    </div>
+    <div class="title-login">
+      <%= f.label :password %>
+      </div>
+      <div class="input-txt-login">
+      <%= f.password_field :password %>
+    </div>
+    <div class="title-login">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+      <div style="float:right;"><%= link_to "Register", users_path %></div>
+      <div style="clear:both;"></div>
+    </div>
+    <div class="title-login">
+      <%= f.submit "Login" ,:class => 'button-submit'%>
+    </div>
+  <% end %>
+</div>
+<script type="text/javascript">
+
+</script>

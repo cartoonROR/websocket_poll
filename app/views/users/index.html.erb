@@ -1,0 +1,58 @@
+<div style="width:320px;margin:0 auto;">
+  <div style="float:right;">
+  <% if current_user %>
+    <%= current_user.email %>
+    <%= link_to "Sign out", logout_path %>
+  <% else %>
+    <%= link_to "Sign in", login_path %>
+  <% end %>
+    </div>
+  <div style="clear:both;"></div>
+</div>
+<div class="box-login">
+<div style="font-size: 20px;margin: 10px 0;">Register</div>
+<div>
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %></h2>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :login,"Username" %>
+      </div>
+      <div>
+      <%= f.text_field :login ,:class => "txt-name-item",:size => 20%>
+    </div>
+    <div class="field">
+      <%= f.label :password %>
+      </div>
+      <div>
+      <%= f.password_field :password ,:class => "txt-name-item",:size => 20%>
+    </div>
+  <div class="field">
+      <%= f.label :password_confirmation %>
+    </div>
+
+    <div>
+      <%= f.password_field :password_confirmation ,:class => "txt-name-item",:size => 20%>
+    </div>
+  <div class="field">
+      <%= f.label :email %>
+    </div>
+      <div>
+      <%= f.text_field :email ,:class => "txt-name-item",:size => 20%>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+
+</div>
+    </div>
